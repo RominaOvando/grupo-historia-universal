@@ -1,36 +1,20 @@
+
 import React from 'react';
-
-import {
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native';
-
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+// Pantallas de Romina
 import LoginScreen from '../modules/historia/screens/LoginScreen';
 
+// Pantallas de Nataly
 import { HistoriaHomeScreen } from '../modules/historia';
-
 import LeccionDetalleScreen from '../modules/historia/screens/LeccionDetalleScreen';
 
+// Pantallas de Brandon
+import DocenteHomeScreen from '../modules/historia/screens/DocenteHomeScreen';
+import EstudiantesCursoScreen from '../modules/historia/screens/EstudiantesCursoScreen';
+import ProgresoEstudianteScreen from '../modules/historia/screens/ProgresoEstudianteScreen';
+
 const Stack = createNativeStackNavigator();
-
-// Pantalla provisional del docente
-function DocenteHomeScreen() {
-  return (
-    <View style={styles.contenedor}>
-      <Text style={styles.titulo}>
-        Panel del Docente
-      </Text>
-
-      <Text style={styles.descripcion}>
-        Bienvenido a VIRTU.
-        Aquí podrás administrar tus cursos.
-      </Text>
-    </View>
-  );
-}
 
 export default function AppNavigator() {
   return (
@@ -40,6 +24,7 @@ export default function AppNavigator() {
         component={LoginScreen}
         options={{
           title: 'Iniciar sesión',
+          headerBackVisible: false,
         }}
       />
 
@@ -48,6 +33,7 @@ export default function AppNavigator() {
         component={HistoriaHomeScreen}
         options={{
           title: 'Historia Universal',
+          headerBackVisible: false,
         }}
       />
 
@@ -64,31 +50,25 @@ export default function AppNavigator() {
         component={DocenteHomeScreen}
         options={{
           title: 'Panel del Docente',
+          headerBackVisible: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="EstudiantesCurso"
+        component={EstudiantesCursoScreen}
+        options={{
+          title: 'Estudiantes del curso',
+        }}
+      />
+
+      <Stack.Screen
+        name="ProgresoEstudiante"
+        component={ProgresoEstudianteScreen}
+        options={{
+          title: 'Progreso académico',
         }}
       />
     </Stack.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  contenedor: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 24,
-    backgroundColor: '#FFFFFF',
-  },
-
-  titulo: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#1E293B',
-  },
-
-  descripcion: {
-    fontSize: 16,
-    marginTop: 12,
-    textAlign: 'center',
-    color: '#64748B',
-  },
-});
